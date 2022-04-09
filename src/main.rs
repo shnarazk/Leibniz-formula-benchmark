@@ -1,7 +1,7 @@
 use {rayon::prelude::*, rug::Rational};
 
 fn main() {
-    let limit = 400_000;
+    let limit = 1_000_000;
     // let mut curr_sum: Rational = Rational::from((1i64, 1i64));
     // let mut denominator: i64 = 3;
     // let mut adding = false;
@@ -15,24 +15,11 @@ fn main() {
     //     adding = !adding;
     // }
     // println!("limit:{} => {}", limit, 4.0 * curr_sum.to_f64());
-
-    // let result1 = (0i64..=limit)
-    //     .into_iter()
-    //     .map(|i| if i % 2 == 0 { 2 * i + 1 } else { -2 * i - 1 })
-    //     .map(|denominator| Rational::from((1i64, denominator)))
-    //     .fold(
-    //         Rational::from((0i64, 1i64)),
-    //         |sum: Rational, frac: Rational| sum + frac,
-    //     );
-    // println!("limit:{} => {}", limit, 4.0 * result1.to_f64());
-
     let result = (0i64..=limit)
         .into_par_iter()
         .map(|i| if i % 2 == 0 { 2 * i + 1 } else { -2 * i - 1 })
         .map(|denominator| Rational::from((1i64, denominator)))
-        .reduce(
-            || Rational::from((0i64, 1i64)),
-            |sum: Rational, frac: Rational| sum + frac,
-        );
-    println!("limit:{} => {}", limit, 4.0 * result.to_f64());
+        .sum::<Rational>()
+        .to_f64();
+    println!("limit:{} => {}", limit, 4.0 * result);
 }
