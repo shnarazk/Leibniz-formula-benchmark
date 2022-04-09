@@ -2,7 +2,7 @@ use criterion::{criterion_group, criterion_main, BenchmarkId, Criterion};
 use {rayon::prelude::*, rug::Rational};
 
 fn bench_parallels(c: &mut Criterion) {
-    let mut group = c.benchmark_group("Fibonacci");
+    let mut group = c.benchmark_group("Parallel Pi calculation");
     for i in [100_000i64, 200_000, 400_000, 800_000].iter() {
         group.bench_with_input(BenchmarkId::new("sum", i), i, |b, i| b.iter(|| pi_par1(*i)));
         group.bench_with_input(BenchmarkId::new("reduce", i), i, |b, i| {
