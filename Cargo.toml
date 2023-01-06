@@ -10,6 +10,10 @@ criterion = "0.4"
 rayon = "1.6"
 rug = "1.19"
 
+[features]
+default = []
+float = []
+
 [[bench]]
 name = "benchmark"
 harness = false
