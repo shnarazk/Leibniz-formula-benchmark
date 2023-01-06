@@ -6,9 +6,9 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-criterion = "0.3"
-rayon = "1.5"
-rug = "1.15"
+criterion = "0.4"
+rayon = "1.6"
+rug = "1.19"
 
 [[bench]]
 name = "benchmark"
