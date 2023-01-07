@@ -5,7 +5,7 @@ use rug::Rational;
 
 #[cfg(not(feature = "float"))]
 fn main() {
-    let limit = 1_000_000;
+    let limit = 20_000_000;
     let result = (0i64..=limit)
         .into_par_iter()
         .map(|i| if i % 2 == 0 { 2 * i + 1 } else { -2 * i - 1 })
@@ -28,5 +28,5 @@ fn main() {
             }
         })
         .sum::<f64>();
-    println!("limit:{} => {}", limit, 4.0 * result);
+    println!("f64 limit:{} => {}", limit, 4.0 * result);
 }
