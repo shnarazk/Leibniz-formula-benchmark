@@ -1,18 +1,19 @@
 [package]
 name = "pi-rust"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-criterion = "0.4"
-rayon = "1.6"
-rug = "1.19"
+criterion = "^0.4"
+rayon = { version = "^1.7", optional = true }
+rug = { version = "^1.19", optional = true }
 
 [features]
-default = ["float"]
-float = []
+default = []
+bignum = ["rug"]
+parallel = ["rayon"]
 
 [[bench]]
 name = "benchmark"

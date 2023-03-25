@@ -1,35 +1,48 @@
+#[cfg(feature = "parallel")]
 use rayon::prelude::*;
 
-#[cfg(not(feature = "float"))]
+#[cfg(feature = "bignum")]
 use rug::Rational;
 
-#[cfg(not(feature = "float"))]
+// #[cfg(feature = "bignum")]
 fn main() {
-    let limit = 20_000_000;
-    let result = (0i64..=limit)
-        .into_par_iter()
-        .map(|i| if i % 2 == 0 { 2 * i + 1 } else { -2 * i - 1 })
-        .map(|denominator| Rational::from((1i64, denominator)))
+    let limit: u128 = 1_000_000_000;
+
+    /// We generate two (positive and negative) terms from a single index.
+    /// So halve `limit`.
+    #[cfg(feature = "parallel")]
+    let seq = (0..=limit / 2).into_par_iter();
+    #[cfg(not(feature = "parallel"))]
+    let seq = 0..=limit / 2;
+
+    #[cfg(feature = "bignum")]
+    let val = seq
+        .map(|j| {
+            let demoninator = j * 4;
+            Rational::from((1, denominator + 1)) - Rational::from((1, denominator + 3))
+        })
         .sum::<Rational>()
         .to_f64();
-    println!("limit:{} => {}", limit, 4.0 * result);
-}
-
-#[cfg(feature = "float")]
-fn main() {
-    let limit = 1_000_000_000 / 2;
-    let result = (0i64..=limit)
-        .into_par_iter()
-        .map(|i| {
-            // if i % 2 == 0 {
-            //     1.0 / (2 * i + 1) as f64
-            // } else {
-            //     1.0 / (-2 * i - 1) as f64
-            // }
-            let j = i as f64 * 4.0;
-            // 1.0 / (j + 1) as f64 - 1.0 / (j + 3) as f64
-            2.0 / ((j + 1.0) * (j + 3.0))
+    #[cfg(not(feature = "bignum"))]
+    let val = seq
+        .map(|j| {
+            let i = j * 4;
+            2.0 / (((i + 1) * (i + 3)) as f64)
         })
         .sum::<f64>();
-    println!("f64 limit:{} => {}", limit, 4.0 * result);
+
+    println!(
+        "{}{}limit: {limit} => {}",
+        if cfg!(feature = "bignum") {
+            "bignum, "
+        } else {
+            ""
+        },
+        if cfg!(feature = "parallel") {
+            "parallel, "
+        } else {
+            ""
+        },
+        val * 4.0
+    );
 }
