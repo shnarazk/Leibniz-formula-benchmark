@@ -17,7 +17,7 @@ fn main() {
 
 #[cfg(feature = "float")]
 fn main() {
-    let limit = 10_000_000 / 2;
+    let limit = 1_000_000_000 / 2;
     let result = (0i64..=limit)
         .into_par_iter()
         .map(|i| {
