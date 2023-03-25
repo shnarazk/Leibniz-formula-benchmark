@@ -11,7 +11,7 @@ rayon = "1.6"
 rug = "1.19"
 
 [features]
-default = []
+default = ["float"]
 float = []
 
 [[bench]]
