@@ -2,6 +2,7 @@ use std::sync::Arc;
 
 #[cfg(feature = "bignum")]
 use rug::Rational;
+use std::time::Instant;
 use tokio::sync::Mutex;
 
 const NUM_THREAD: usize = 4;
@@ -27,27 +28,32 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     // https://tokio.rs/tokio/tutorial/shared-state
     let pi = Arc::new(Mutex::new(0.0f64));
-    #[cfg(not(feature = "bignum"))]
+    // #[cfg(not(feature = "bignum"))]
+    let start = Instant::now();
     let handles = (0..NUM_THREAD)
         .map(|i| {
             let pi = pi.clone();
             tokio::spawn(async move {
-                *pi.lock().await +=
-                    4.0 * (0..limit / NUM_THREAD).map(|k| compute!(k, i)).sum::<f64>();
+                let sub = (0..limit / (2 * NUM_THREAD))
+                    .map(|k| compute!(k, i))
+                    .sum::<f64>();
+                *pi.lock().await += 4.0 * sub;
             })
         })
         .collect::<Vec<_>>();
     for i in handles {
         assert!(i.await.is_ok());
     }
+    let end = Instant::now();
     println!(
-        "{} limit: {limit} => {}",
+        "{} limit: {limit} => {} in {} msec.",
         if cfg!(feature = "bignum") {
             "bignum, async/await"
         } else {
             "async/await"
         },
-        *pi.lock().await
+        *pi.lock().await,
+        (end - start).as_millis(),
     );
     Ok(())
 }
