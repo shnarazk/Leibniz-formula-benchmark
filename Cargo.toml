@@ -6,14 +6,18 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-criterion = "^0.4"
-rayon = { version = "^1.7", optional = true }
+# criterion = "^0.4"
 rug = { version = "^1.19", optional = true }
+tokio = { version = "1.28.0", features = ["full"] }
+
+[dev-dependencies]
+criterion = "^0.4"
+rug = { version = "^1.19" }
+tokio = { version = "1.28.0", features = ["full"] }
 
 [features]
 default = []
 bignum = ["rug"]
-parallel = ["rayon"]
 
 [[bench]]
 name = "benchmark"

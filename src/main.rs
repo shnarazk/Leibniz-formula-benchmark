@@ -1,11 +1,9 @@
-#[cfg(feature = "parallel")]
-use rayon::prelude::*;
-
 #[cfg(feature = "bignum")]
 use rug::Rational;
 
 // #[cfg(feature = "bignum")]
-fn main() {
+#[tokio::main]
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let limit: u128 = 1_000_000_000;
 
     /// We generate two (positive and negative) terms from a single index.
@@ -45,4 +43,5 @@ fn main() {
         },
         val * 4.0
     );
+    Ok(())
 }
