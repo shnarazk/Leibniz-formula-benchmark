@@ -4,18 +4,18 @@ use std::sync::Arc;
 use rug::Rational;
 use tokio::sync::Mutex;
 
+const NUM_THREAD: usize = 4;
+
 // #[cfg(feature = "bignum")]
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let limit: u128 = 1_000_000_000;
-    let num_thread = 5;
+    let limit: usize = 10_000_000_000;
     macro_rules! compute {
         ($index: expr, $offset: expr) => {{
-            let i = (3 + 4 * (num_thread * $index + $offset)) as f64;
+            let i = (3 + 4 * (NUM_THREAD * $index + $offset)) as f64;
             2.0f64 / (i * (i - 2.0))
         }};
     }
-
     // #[cfg(feature = "bignum")]
     // let val = seq
     //     .map(|j| {
@@ -26,40 +26,28 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     //     .to_f64();
 
     // https://tokio.rs/tokio/tutorial/shared-state
-    let total = Arc::new(Mutex::new(0.0f64));
+    let pi = Arc::new(Mutex::new(0.0f64));
     #[cfg(not(feature = "bignum"))]
-    let mut handles = Vec::new();
-    for i in 0..num_thread {
-        let total = total.clone();
-        handles.push(tokio::spawn(async move {
-            let mut sub_total: f64 = 0.0;
-            for k in 0..10000 {
-                sub_total += compute!(k, i);
-                if k % 10000 == 0 {
-                    dbg!(i, sub_total);
-                    // todo!();
-                }
-            }
-            let mut total = total.lock().await;
-            *total += sub_total;
-        }));
-    }
+    let handles = (0..NUM_THREAD)
+        .map(|i| {
+            let pi = pi.clone();
+            tokio::spawn(async move {
+                *pi.lock().await +=
+                    4.0 * (0..limit / NUM_THREAD).map(|k| compute!(k, i)).sum::<f64>();
+            })
+        })
+        .collect::<Vec<_>>();
     for i in handles {
         assert!(i.await.is_ok());
     }
     println!(
-        "{}{}limit: {limit} => {}",
+        "{} limit: {limit} => {}",
         if cfg!(feature = "bignum") {
-            "bignum, "
+            "bignum, async/await"
         } else {
-            ""
+            "async/await"
         },
-        if cfg!(feature = "parallel") {
-            "parallel, "
-        } else {
-            ""
-        },
-        *total.lock().await * 4.0
+        *pi.lock().await
     );
     Ok(())
 }
