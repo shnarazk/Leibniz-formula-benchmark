@@ -1,34 +1,52 @@
+use std::sync::Arc;
+
 #[cfg(feature = "bignum")]
 use rug::Rational;
+use tokio::sync::Mutex;
 
 // #[cfg(feature = "bignum")]
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let limit: u128 = 1_000_000_000;
+    let num_thread = 5;
+    macro_rules! compute {
+        ($index: expr, $offset: expr) => {{
+            let i = (3 + 4 * (num_thread * $index + $offset)) as f64;
+            2.0f64 / (i * (i - 2.0))
+        }};
+    }
 
-    /// We generate two (positive and negative) terms from a single index.
-    /// So halve `limit`.
-    #[cfg(feature = "parallel")]
-    let seq = (0..=limit / 2).into_par_iter();
-    #[cfg(not(feature = "parallel"))]
-    let seq = 0..=limit / 2;
+    // #[cfg(feature = "bignum")]
+    // let val = seq
+    //     .map(|j| {
+    //         let demoninator = j * 4;
+    //         Rational::from((1, denominator + 1)) - Rational::from((1, denominator + 3))
+    //     })
+    //     .sum::<Rational>()
+    //     .to_f64();
 
-    #[cfg(feature = "bignum")]
-    let val = seq
-        .map(|j| {
-            let demoninator = j * 4;
-            Rational::from((1, denominator + 1)) - Rational::from((1, denominator + 3))
-        })
-        .sum::<Rational>()
-        .to_f64();
+    // https://tokio.rs/tokio/tutorial/shared-state
+    let total = Arc::new(Mutex::new(0.0f64));
     #[cfg(not(feature = "bignum"))]
-    let val = seq
-        .map(|j| {
-            let i = j * 4;
-            2.0 / (((i + 1) * (i + 3)) as f64)
-        })
-        .sum::<f64>();
-
+    let mut handles = Vec::new();
+    for i in 0..num_thread {
+        let total = total.clone();
+        handles.push(tokio::spawn(async move {
+            let mut sub_total: f64 = 0.0;
+            for k in 0..10000 {
+                sub_total += compute!(k, i);
+                if k % 10000 == 0 {
+                    dbg!(i, sub_total);
+                    // todo!();
+                }
+            }
+            let mut total = total.lock().await;
+            *total += sub_total;
+        }));
+    }
+    for i in handles {
+        assert!(i.await.is_ok());
+    }
     println!(
         "{}{}limit: {limit} => {}",
         if cfg!(feature = "bignum") {
@@ -41,7 +59,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         } else {
             ""
         },
-        val * 4.0
+        *total.lock().await * 4.0
     );
     Ok(())
 }
