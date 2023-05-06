@@ -1,9 +1,6 @@
-use std::sync::Arc;
-
 #[cfg(feature = "bignum")]
 use rug::Rational;
-use std::time::Instant;
-use tokio::sync::Mutex;
+use {std::sync::Arc, std::time::Instant, tokio::sync::Mutex};
 
 const NUM_THREAD: usize = 4;
 
