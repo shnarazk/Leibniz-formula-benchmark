@@ -6,7 +6,7 @@ use rug::Rational;
 
 // #[cfg(feature = "bignum")]
 fn main() {
-    let limit: u128 = 1_000_000_000;
+    let limit: u64 = 1_000_000_000;
 
     /// We generate two (positive and negative) terms from a single index.
     /// So halve `limit`.
