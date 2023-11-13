@@ -7,13 +7,9 @@ edition = "2021"
 
 [dependencies]
 criterion = "^0.4"
-rayon = { version = "^1.7", optional = true }
-rug = { version = "^1.19", optional = true }
 
 [features]
 default = []
-bignum = ["rug"]
-parallel = ["rayon"]
 
 [[bench]]
 name = "benchmark"
