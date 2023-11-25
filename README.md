@@ -1,10 +1,6 @@
-# A mirco benchmark with pi
+# A mirco benchmark with Leibniz formula
 
 This program has been used for inter-language comparisons.
-
-See:
-- Pharo and Python: [https://github.com/shnarazk/learn-pharo/blob/master/README.md](https://github.com/shnarazk/learn-pharo/blob/master/README.md) 
-- BQN: [https://github.com/shnarazk/learn-bqn/blob/main/pi-benchmark](https://github.com/shnarazk/learn-bqn/blob/main/pi-benchmark/README.md)
 
 # Old data
 
@@ -12,7 +8,8 @@ See:
 
 | program             | 100M pairs |    1G pairs   |
 |---------------------|-----------:|--------------:|
-| BQN (SIMD)          |       1.48 | out of memory |
+| BQN (naive)         |       5.32 |         53.95 |
+| BQN (SIMD)          |       0.21 |          2.09 |
 | Pharo11 (naive)     |       1.16 |         11.72 |
 | Python3.10 (naive)  |      16.00 |        168.67 |
 | Rust (naive)        |       0.09 |          0.62 |
