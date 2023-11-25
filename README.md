@@ -23,16 +23,16 @@ fn pi(limit: u32) {
 - CPU: Apple M3
 - Memory: 24GB
 
-| Language/approach   | Implementation |  10M pairs | 100M pairs | note |
-|---------------------|----------------|-----------:|-----------:|------|
-| BQN (naive)         | CBQN 0.3+ o3n  |            |            |      |
-| BQN (SIMD)          | CBQN 0.3+ o3n  |            |            |      |
-| Pharo (naive)       | Pharo 11       |            |            |      |
-| Python (naive)      | CPython 3.11   |            |            |      |
-| Rust (naive)        | Rust 1.74      |       0.02 |       0.08 |      |
-| Rust (threads)      | Rust 1.74      |       0.00 |       0.02 |      |
-| Scratch(naive)      | Scratch (turbo)|            |            |      |
-| Swift(naive)        | Swift 5.9.0    |            |            |      |
+| Language/approach   | Implementation |  10M pairs | 100M pairs |       note |
+|---------------------|----------------|-----------:|-----------:|------------|
+| BQN (naive)         | CBQN 0.3+ o3n  |            |            |            |
+| BQN (SIMD)          | CBQN 0.3+ o3n  |            |            |            |
+| Pharo (naive)       | Pharo 11       |            |            |            |
+| Python (naive)      | CPython 3.11   |            |            |            |
+| Rust (naive)        | Rust 1.74      |      0.010 |      0.081 | 2023-11-25 |
+| Rust (threads)      | Rust 1.74      |      0.002 |      0.016 | 2023-11-25 |
+| Scratch(naive)      | Scratch (turbo)|            |            |            |
+| Swift(naive)        | Swift 5.9.0    |      0.015 |      0.100 | 2023-11-25 |
 | Uiua (naive)        | Uiua 0.3.1+    |       3.22 |      32.18 | 2023-11-25 |
 | Uiua (threads)      | Uiua 0.3.1+    |       1.63 |      13.34 | 2023-11-25 |
 
