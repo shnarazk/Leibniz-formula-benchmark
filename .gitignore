@@ -1,1 +1,8 @@
-/target
+.DS_Store
+.build/
+Packages/
+xcuserdata/
+DerivedData/
+.swiftpm
+Package.resolved
+target/
