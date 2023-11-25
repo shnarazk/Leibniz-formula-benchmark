@@ -1,5 +1,5 @@
 use criterion::{criterion_group, criterion_main, BenchmarkId, Criterion};
-use {rayon::prelude::*, rug::Rational};
+use rayon::prelude::*;
 
 fn bench_parallels(c: &mut Criterion) {
     let mut group = c.benchmark_group("Parallel Pi calculation");

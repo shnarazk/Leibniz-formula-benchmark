@@ -1,48 +1,31 @@
 #[cfg(feature = "parallel")]
 use rayon::prelude::*;
+use std::time::Instant;
 
-#[cfg(feature = "bignum")]
-use rug::Rational;
-
-// #[cfg(feature = "bignum")]
 fn main() {
-    let limit: u64 = 1_000_000_000;
-
-    /// We generate two (positive and negative) terms from a single index.
-    /// So halve `limit`.
+    let beg = Instant::now();
+    let pairs: u32 = 10_000_000;
     #[cfg(feature = "parallel")]
-    let seq = (0..=limit / 2).into_par_iter();
+    let seq = (0..=pairs).into_par_iter();
     #[cfg(not(feature = "parallel"))]
-    let seq = 0..=limit / 2;
+    let seq = 0..=pairs;
 
-    #[cfg(feature = "bignum")]
     let val = seq
         .map(|j| {
-            let demoninator = j * 4;
-            Rational::from((1, denominator + 1)) - Rational::from((1, denominator + 3))
-        })
-        .sum::<Rational>()
-        .to_f64();
-    #[cfg(not(feature = "bignum"))]
-    let val = seq
-        .map(|j| {
-            let i = j * 4;
-            2.0 / (((i + 1) * (i + 3)) as f64)
+            let i = (j as f64) * 4.0;
+            2.0 / ((i + 1.0) * (i + 3.0))
         })
         .sum::<f64>();
 
+    let end = Instant::now();
     println!(
-        "{}{}limit: {limit} => {}",
-        if cfg!(feature = "bignum") {
-            "bignum, "
-        } else {
-            ""
-        },
+        "{} pairs: {pairs} => {} in {} sec",
         if cfg!(feature = "parallel") {
             "parallel, "
         } else {
             ""
         },
-        val * 4.0
+        val * 4.0,
+        (end - beg).as_secs_f64(),
     );
 }

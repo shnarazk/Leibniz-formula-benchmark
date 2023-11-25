@@ -29,8 +29,8 @@ fn pi(limit: u32) {
 | BQN (SIMD)          | CBQN 0.3+ o3n  |            |            |      |
 | Pharo (naive)       | Pharo 11       |            |            |      |
 | Python (naive)      | CPython 3.11   |            |            |      |
-| Rust (naive)        | Rust 1.74      |            |            |      |
-| Rust (threads)      | Rust 1.74      |            |            |      |
+| Rust (naive)        | Rust 1.74      |       0.02 |       0.08 |      |
+| Rust (threads)      | Rust 1.74      |       0.00 |       0.02 |      |
 | Scratch(naive)      | Scratch (turbo)|            |            |      |
 | Swift(naive)        | Swift 5.9.0    |            |            |      |
 | Uiua (naive)        | Uiua 0.3.1+    |       3.22 |      32.18 | 2023-11-25 |
