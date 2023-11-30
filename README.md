@@ -33,8 +33,8 @@ fn pi(limit: u32) {
 | Rust (threads)      | Rust 1.74      |      0.002 |      0.016 | 2023-11-25 |
 | Scratch(naive)      | Scratch (turbo)|            |            |            |
 | Swift(naive)        | Swift 5.9.0    |      0.015 |      0.100 | 2023-11-25 |
-| Uiua (naive)        | Uiua 0.3.1+    |       3.22 |      32.18 | 2023-11-25 |
-| Uiua (threads)      | Uiua 0.3.1+    |       1.63 |      13.34 | 2023-11-25 |
+| Uiua (naive)        | Uiua 0.3.1+    |      3.110 |     31.669 | 2023-11-30 |
+| Uiua (threads)      | Uiua 0.3.1+    |      1.410 |     13.728 | 2023-11-30 |
 
 
 # Old data
