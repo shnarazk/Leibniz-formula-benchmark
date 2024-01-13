@@ -1,10 +1,7 @@
-#[cfg(feature = "bignum")]
-use rug::Rational;
 use {std::sync::Arc, std::time::Instant, tokio::sync::Mutex};
 
 const NUM_THREAD: usize = 4;
 
-// #[cfg(feature = "bignum")]
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let limit: usize = 10_000_000_000;
@@ -14,18 +11,9 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             2.0f64 / (i * (i - 2.0))
         }};
     }
-    // #[cfg(feature = "bignum")]
-    // let val = seq
-    //     .map(|j| {
-    //         let demoninator = j * 4;
-    //         Rational::from((1, denominator + 1)) - Rational::from((1, denominator + 3))
-    //     })
-    //     .sum::<Rational>()
-    //     .to_f64();
 
     // https://tokio.rs/tokio/tutorial/shared-state
     let pi = Arc::new(Mutex::new(0.0f64));
-    // #[cfg(not(feature = "bignum"))]
     let start = Instant::now();
     let handles = (0..NUM_THREAD)
         .map(|i| {
@@ -43,12 +31,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     }
     let end = Instant::now();
     println!(
-        "{} limit: {limit} => {} in {} msec.",
-        if cfg!(feature = "bignum") {
-            "bignum, async/await"
-        } else {
-            "async/await"
-        },
+        "async/await limit: {limit} => {} in {} msec.",
         *pi.lock().await,
         (end - start).as_millis(),
     );
