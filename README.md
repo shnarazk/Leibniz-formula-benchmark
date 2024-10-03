@@ -23,16 +23,17 @@ fn pi(limit: u32) {
 - CPU: Apple M3
 - Memory: 24GB
 
-| Language/approach   | Implementation |  10M pairs | 100M pairs |       note |
+| Language/approach   | Implementation |  10M pairs | 100M [sec] |       note |
 |---------------------|----------------|-----------:|-----------:|------------|
 | BQN (naive)         | CBQN 0.3+ o3n  |            |            |            |
 | BQN (SIMD)          | CBQN 0.3+ o3n  |            |            |            |
 | Factor (naive)      | 0.99+          |            |      0.137 | Core i5 2.3GHz 2cores |
 | Koka (naive)        | 3.0.4          |            |      0.08  | 2024-02-11 |
+| Lean4 (naive)       | 4.12.0         |      0.011 |      0.089 | 2024-10-03 |
 | Pharo (naive)       | Pharo 11+      |      0.167 |      1.141 | 2024-01-01 |
 | Python (naive)      | CPython 3.12   |      1.036 |     10.435 | 2023-11-25 |
 | Rust (naive)        | Rust 1.74      |      0.010 |      0.081 | 2023-11-25 |
-| Rust (threads)      | Rust 1.74      |      0.002 |      0.016 | 2023-11-25 |
+| Rust (threads)      | Rust 1.81      |      0.002 |      0.015 | 2024-10-03 |
 | Scratch(naive)      | Scratch (turbo)|            |            |            |
 | Swift(naive)        | Swift 5.9.0    |      0.015 |      0.100 | 2023-11-25 |
 | Uiua (naive)        | Uiua 0.3.1+    |      3.110 |     31.669 | 2023-11-30 |
