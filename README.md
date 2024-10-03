@@ -1,5 +1,7 @@
 # A mirco benchmark with Leibniz formula
 
+- [wikipedia](https://en.wikipedia.org/wiki/Leibniz_formula_for_π)
+
 ## Program structure
 
 - Use float numbers to evaluate each term.
