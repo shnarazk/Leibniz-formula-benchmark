@@ -36,7 +36,8 @@ fn pi(limit: u32) {
 | Python (naive)      | CPython 3.12   |      1.036 |     10.435 | 2023-11-25 |
 | Rust (naive)        | Rust 1.74      |      0.010 |      0.081 | 2023-11-25 |
 | Rust (threads)      | Rust 1.81      |      0.002 |      0.015 | 2024-10-03 |
-| Scratch(naive)      | Scratch (turbo)|      6.48  |     47.25  | 2024-11-07 |
+| [Scratch(naive)](https://private-user-images.githubusercontent.com/997855/383764619-b7b629ef-add4-41ae-8be0-28e154cb81a5.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MzA5Mzg0NDksIm5iZiI6MTczMDkzODE0OSwicGF0aCI6Ii85OTc4NTUvMzgzNzY0NjE5LWI3YjYyOWVmLWFkZDQtNDFhZS04YmUwLTI4ZTE1NGNiODFhNS5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQxMTA3JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MTEwN1QwMDA5MDlaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT04ODFiNjM3ZjRiOWE4OGI1MmU5YzQ0NDdlMzc3NjkyMTdkOTZjNTM4N2Y5OTFiYzhkMThiZTM2NDcxNmJmZmU3JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.yhzzLKOxc_Xn8OW9lQvrjgC1vGbo3VoHP2zYEnBiWf4)      | Scratch (turbo)|      6.48  |     47.25  | 2024-11-07 |
+>>>>>>> 3e71093 (Add Scratch results)
 | Swift(naive)        | Swift 5.9.0    |      0.015 |      0.100 | 2023-11-25 |
 | Uiua (naive)        | Uiua 0.13.0    |      4.072 |     40.830 | 2024-11-07 |
 | Uiua (threads)      | Uiua 0.3.1+    |      1.410 |     13.728 | 2023-11-30 |
