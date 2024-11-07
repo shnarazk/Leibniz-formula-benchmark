@@ -31,7 +31,7 @@ fn pi(limit: u32) {
 | BQN (SIMD)          | CBQN 0.8       |       0.03 |      0.16  | 2024-11-07 |
 | Factor (naive)      | 0.99+          |            |      0.137 | Core i5 2.3GHz 2cores |
 | Koka (naive)        | 3.0.4          |            |      0.08  | 2024-02-11 |
-| Lean4 (naive)       | 4.12.0         |      0.011 |      0.089 | 2024-10-03 |
+| Lean4 (naive)       | 4.14.0-rc2     |      0.010 |      0.084 | 2024-11-07 |
 | Pharo (naive)       | Pharo 11+      |      0.167 |      1.141 | 2024-01-01 |
 | Python (naive)      | CPython 3.12   |      1.036 |     10.435 | 2023-11-25 |
 | Rust (naive)        | Rust 1.74      |      0.010 |      0.081 | 2023-11-25 |
