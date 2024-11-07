@@ -1,4 +1,4 @@
-n‿chunk ← ⟨50×1000×1000,1000⟩
+n‿chunk ← ⟨100×1000×1000,1000⟩
 seed‿span ← ⟨3+4×↕chunk,4×chunk⟩
 sum ← 0
 Term ← {
