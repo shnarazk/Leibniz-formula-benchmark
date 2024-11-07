@@ -36,7 +36,7 @@ fn pi(limit: u32) {
 | Python (naive)      | CPython 3.12   |      1.036 |     10.435 | 2023-11-25 |
 | Rust (naive)        | Rust 1.74      |      0.010 |      0.081 | 2023-11-25 |
 | Rust (threads)      | Rust 1.81      |      0.002 |      0.015 | 2024-10-03 |
-| Scratch(naive)      | Scratch (turbo)|            |            |            |
+| Scratch(naive)      | Scratch (turbo)|      6.48  |     47.25  | 2024-11-07 |
 | Swift(naive)        | Swift 5.9.0    |      0.015 |      0.100 | 2023-11-25 |
 | Uiua (naive)        | Uiua 0.13.0    |      4.072 |     40.830 | 2024-11-07 |
 | Uiua (threads)      | Uiua 0.3.1+    |      1.410 |     13.728 | 2023-11-30 |
