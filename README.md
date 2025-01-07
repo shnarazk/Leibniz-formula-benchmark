@@ -32,7 +32,7 @@ fn pi(limit: u32) {
 | Factor (naive)      | 0.99+          |            |      0.137 | Core i5 2.3GHz 2cores |
 | Julia (naive)       | 1.11.2         |      0.013 |      0.083 | 2025-01-07 |
 | Koka (naive)        | 3.0.4          |      0.08_ |            | 2024-02-11 |
-| Lean4 (naive)       | 4.14.0-rc2     |      0.010 |      0.084 | 2024-11-07 |
+| Lean4 (naive)       | 4.15.0         |      0.009 |      0.083 | 2024-11-07 |
 | Pharo (naive)       | Pharo 11+      |      0.167 |      1.141 | 2024-01-01 |
 | Python (naive)      | CPython 3.12   |      1.036 |     10.435 | 2023-11-25 |
 | Rust (naive)        | Rust 1.74      |      0.010 |      0.081 | 2023-11-25 |
