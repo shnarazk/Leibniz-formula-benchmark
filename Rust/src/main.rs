@@ -4,7 +4,7 @@ use std::time::Instant;
 
 fn main() {
     let beg = Instant::now();
-    let pairs: u32 = 10_000_000;
+    let pairs: u32 = 100_000_000;
     #[cfg(feature = "parallel")]
     let seq = (0..=pairs).into_par_iter();
     #[cfg(not(feature = "parallel"))]
