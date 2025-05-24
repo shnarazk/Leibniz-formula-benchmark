@@ -1,12 +1,13 @@
-
-function pi(limit::Int64)
+#!/usr/bin/env julia
+#
+function pi(limit::Int64)::Float64
     sum::Float64 = 0.0
     for i in 0:limit
         k::Float64 = 4.0 * i
         # sum += (-1)^i / (2i + 1)
-        sum += 2.0 / ((k + 1) * (k + 3))
+        sum += 2.0 / ((k + 1.0) * (k + 3.0))
     end
-    4 * sum
+    4.0 * sum
 end
 
 num_pairs = 100_000_000
